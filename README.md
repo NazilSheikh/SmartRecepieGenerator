@@ -60,7 +60,7 @@ A clean landing page that showcases AI-powered recipe discovery.
 - Image Upload (used for AI analysis)
 
 🖼️ *Example UI:*  
-![User Input Screenshot](./demo-images/add-recipe.png)
+![User Input Screenshot](./demoimages/FormFill.png)
 
 ---
 
@@ -69,7 +69,7 @@ A clean landing page that showcases AI-powered recipe discovery.
 - Includes step-by-step instructions & nutritional info
 
 🖼️ *AI Generated Recipes:*  
-![AI Recipes Screenshot](./demo-images/ai-generated.png)
+![AI Recipes Screenshot](./demoimages/AiGenrated.png)
 
 ---
 
@@ -78,7 +78,7 @@ A clean landing page that showcases AI-powered recipe discovery.
 - Adjust servings dynamically
 
 🖼️ *Filter Example:*  
-![Filters Screenshot](./demo-images/filters.png)
+![AI Recipes Screenshot](./demoimages/AiGenrated.png)
 
 ---
 
@@ -92,7 +92,7 @@ A clean landing page that showcases AI-powered recipe discovery.
   - Nutritional Info
 
 🖼️ *Recipe List UI:*  
-![Recipe Database Screenshot](./demo-images/home.png)
+![AI Recipes Screenshot](./demoimages/detailsPage.png)
 
 ---
 
@@ -102,8 +102,8 @@ A clean landing page that showcases AI-powered recipe discovery.
 - AI generates smart suggestions based on ratings and favorites  
 
 🖼️ *User Feedback + Favourites:*  
-![Favourites Screenshot](./demo-images/favourites.png)  
-![Suggestions Screenshot](./demo-images/suggestions.png)
+![Favourites Screenshot](./demoimages/Favourite.png)  
+![Suggestions Screenshot](./demoimages/Aisuggest.png)
 
 ---
 
