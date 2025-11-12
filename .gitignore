@@ -1,0 +1,19 @@
+# Dependency folders
+node_modules/
+frontend/node_modules/
+
+# Build files
+dist/
+build/
+out/
+.next/
+
+# Environment & config
+.env
+*.env
+
+# Logs & temp files
+*.log
+.vscode/
+.idea/
+.DS_Store
