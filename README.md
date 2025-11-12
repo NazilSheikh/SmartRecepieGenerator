@@ -2,6 +2,10 @@
 > An AI-powered recipe creation platform to **discover, create, and personalize mouth-watering dishes** — crafted with love, creativity, and a dash of AI inspiration. 😋  
 
 ---
+Here’s how the Smart Recipe Generator works in action 👇  
+
+![Smart Recipe Generator Demo](./demoimages/optimize.gif)
+
 
 ## 🌟 Features Overview  
 
