@@ -73,7 +73,7 @@ A clean landing page that showcases AI-powered recipe discovery.
 - Includes step-by-step instructions & nutritional info
 
 🖼️ *AI Generated Recipes:*  
-![AI Recipes Screenshot](./demoimages/AiGenrated.png)
+![AI Recipes Screenshot](./demoimages/Generating.png)
 
 ---
 
@@ -107,7 +107,7 @@ A clean landing page that showcases AI-powered recipe discovery.
 
 🖼️ *User Feedback + Favourites:*  
 ![Favourites Screenshot](./demoimages/Favourite.png)  
-![Suggestions Screenshot](./demoimages/Aisuggest.png)
+![Suggestions Screenshot](./demoimages/AiSuggest.png)
 
 ---
 
@@ -124,7 +124,53 @@ A clean landing page that showcases AI-powered recipe discovery.
 ## 💾 **Installation Guide**
 
 ### 1️⃣ Clone Repository  
-```bash
+
 git clone https://github.com/nazilsheikh/SmartRecipeGenerator.git
+
+2️⃣ Install Dependencies
+# Frontend
+cd frontend
+npm install
+
+# Backend
+cd ../backend
+npm install
+
+3️⃣ Run the Project
+# Run Backend
+npm start
+
+# Run Frontend (in another terminal)
+npm run dev
+
+4️⃣ Access the App
+
+🌐 Visit: http://localhost:5173
+
+🧠 AI Recipe Generation Example
+
+Input:
+
+Ingredients: Tomato, Pasta, Garlic, Olive Oil
+Dietary Preference: Vegetarian
+
+AI Output:
+
+🍝 Creamy Tomato Garlic Pasta
+
+Boil pasta
+
+Sauté garlic in olive oil
+
+Add tomato puree
+
+Mix and garnish with basil
+Estimated Calories: 420 kcal
+
+👨‍🍳 Developer
+
+Nazil Sheikh
+💼 Full Stack Developer (React, MERN, Flask, AI)
+ 
 
 
