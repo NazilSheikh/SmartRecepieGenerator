@@ -92,7 +92,7 @@ A clean landing page that showcases AI-powered recipe discovery.
   - Nutritional Info
 
 🖼️ *Recipe List UI:*  
-![AI Recipes Screenshot](./demoimages/detailsPage.png)
+![AI Recipes Screenshot](./demoimages/detialsPage.png)
 
 ---
 
