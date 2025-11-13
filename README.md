@@ -108,6 +108,8 @@ A clean landing page that showcases AI-powered recipe discovery.
 🖼️ *User Feedback + Favourites:*  
 ![Favourites Screenshot](./demoimages/Favourite.png)  
 ![Suggestions Screenshot](./demoimages/AiSuggest.png)
+![Suggestions Screenshot](./demoimages/ai.png)
+
 
 ---
 
@@ -117,7 +119,20 @@ A clean landing page that showcases AI-powered recipe discovery.
 - Consistent theme with AI-friendly colors (green/blue tone)
   
 🖼️ *Responsive Layout:*  
-![Responsive Screenshot](./demo-images/responsive-mobile.png)
+![Responsive Screenshot](./demoimages/mobile1.png)
+
+---
+
+---
+
+### 🎨 6.Edit/Delete in MyRecipe Page
+- Edit your recipe
+- Delete your recipe
+  
+🖼️ * Edit/Delete:*  
+![Edit/Delete Screenshot](./demoimages/addedit.png)
+![EditScreenshot](./demoimages/edit.png)
+
 
 ---
 
