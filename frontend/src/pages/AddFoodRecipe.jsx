@@ -1,4 +1,6 @@
+ 
 
+ 
 
 import axios from "axios";
 import React, { useState } from "react";
@@ -6,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 export default function AddFoodRecipe() {
+//  Form state
   const [recipeData, setRecipeData] = useState({
     title: "",
     time: "",
@@ -14,7 +17,7 @@ export default function AddFoodRecipe() {
     dietaryPreference: "others",
     file: null,
   });
-
+  // UI states
   const [imagePreview, setImagePreview] = useState(null);
   const [detectedIngredients, setDetectedIngredients] = useState([]);
   const [aiRecipes, setAiRecipes] = useState([]);
@@ -22,7 +25,7 @@ export default function AddFoodRecipe() {
 
   const navigate = useNavigate();
 
- 
+  //  Ingredient dropdown options
   const ingredientOptions = [
     "Tomato", "Onion", "Garlic", "Cheese", "Paneer", "Chicken", "Milk", "Rice",
     "Potato", "Eggs", "Spinach", "Carrot", "Butter", "Salt", "Pepper", "Cumin",
@@ -33,36 +36,48 @@ export default function AddFoodRecipe() {
     "Cream", "Pasta", "Noodles", "Chickpeas", "Cashew", "Almond", "Mint",
   ].map(item => ({ value: item, label: item }));
 
-  const dietaryOptions = [
-    { value: "vegetarian", label: "Vegetarian" },
-    { value: "vegan", label: "Vegan" },
-    { value: "gluten-free", label: "Gluten-Free" },
-    { value: "non-vegetarian", label: "Non-Vegetarian" },
-    { value: "others", label: "Others" },
-  ];
 
+
+
+  const dietaryOptions = [
+      { value: "vegetarian", label: "Vegetarian" },
+      { value: "vegan", label: "Vegan" },
+      { value: "gluten-free", label: "Gluten-Free" },
+      { value: "non-vegetarian", label: "Non-Vegetarian" },
+      { value: "others", label: "Others" },
+    ];
+
+  // Handles text input and image upload
+  
   const onHandleChange = (e) => {
     const { name, value, files } = e.target;
     const val = name === "file" ? files[0] : value;
     setRecipeData((prev) => ({ ...prev, [name]: val }));
 
+// Generate preview for selected image
     
     if (name === "file" && files[0]) {
       const imageURL = URL.createObjectURL(files[0]);
       setImagePreview(imageURL);
     }
   };
-
+  // Handles multi-select ingredient dropdown
   const handleIngredientSelect = (selectedOptions) => {
     const selectedIngredients = selectedOptions.map((opt) => opt.value);
     setRecipeData((prev) => ({ ...prev, ingredients: selectedIngredients }));
   };
 
+
+//  Handles dietary preference dropdown
+
   const handleDietaryChange = (selectedOption) => {
     setRecipeData((prev) => ({ ...prev, dietaryPreference: selectedOption.value }));
   };
 
-  
+
+  // Sends image to backend for ingredient detection (Gemini Vision)
+
+
   const handleImageUpload = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
@@ -86,6 +101,11 @@ export default function AddFoodRecipe() {
       setLoading(false);
     }
   };
+
+
+
+
+  // Handles manual recipe submission
 
 
   const onHandleSubmit = async (e) => {
@@ -115,12 +135,15 @@ export default function AddFoodRecipe() {
     }
   };
 
-  
+    // Requests AI (SSE stream) to generate recipe ideas
 
 const generateRecipes = async () => {
   try {
     setLoading(true);
     setAiRecipes([]);
+
+
+//  Prefer selected ingredients → else detected ones
 
     const ingredientsList = recipeData.ingredients.length
       ? recipeData.ingredients.join(", ")
@@ -136,13 +159,16 @@ const generateRecipes = async () => {
     const eventSource = new EventSource(url);
     const tempRecipes = [];
 
+  //  Receive SSE stream message-by-message
+
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
 
       if (data.action === "recipe") {
         const r = data.recipe;
 
-       
+      //  Append nutrition info into final instruction text
+    
         let nutritionText = "";
         if (r.nutrition) {
           nutritionText = `
@@ -184,7 +210,7 @@ Fat: ${r.nutrition.fat || "N/A"}
 
 
 
-
+  // Saves an AI-generated recipe into the database
 
 const saveAiRecipe = async (recipe) => {
   if (!recipeData.file) {

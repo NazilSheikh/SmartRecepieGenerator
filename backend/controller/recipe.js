@@ -42,21 +42,7 @@ const getRecipe = async (req, res) => {
 
 
 
-// const addRecipe=async(req,res)=>{
-//     console.log(req.user)
-//     const {title,ingredients,instructions,time}=req.body 
 
-//     if(!title || !ingredients || !instructions)
-//     {
-//         res.json({message:"Required fields can't be empty"})
-//     }
-
-//     const newRecipe=await Recipes.create({
-//         title,ingredients,instructions,time,coverImage:req.file.filename,
-//         createdBy:req.user.id
-//     })
-//    return res.json(newRecipe)
-// }
 
 
 
@@ -116,103 +102,34 @@ const deleteRecipe=async(req,res)=>{
 
 
 // ===================== //
-// 🍽️ Recipe Suggestions //
+//  Recipe Suggestions //
 // ===================== //
 
 
 
-// const getSuggestions = async (req, res) => {
-//   try {
-//     const user = req.user; // from token
-//     const favIds = req.query.favIds?.split(",") || []; // client sends list of favorite IDs
-
-//     if (!favIds.length) {
-//       // if user has no favorites, just return top-rated or random recipes
-//       const randomRecipes = await Recipes.aggregate([{ $sample: { size: 5 } }]);
-//       return res.json(randomRecipes);
-//     }
-
-//     // Get all user's favorite recipes
-//     const favRecipes = await Recipes.find({ _id: { $in: favIds } });
-
-//     // Collect preferred ingredients and dietary preferences
-//     const allIngredients = favRecipes.flatMap(r => r.ingredients);
-//     const allDiets = favRecipes.map(r => r.dietaryPreference);
-
-//     // Find similar recipes
-//     const suggestions = await Recipes.find({
-//       ingredients: { $in: allIngredients },
-//       dietaryPreference: { $in: allDiets },
-//       _id: { $nin: favIds }, // exclude already-favorited
-//     }).limit(8);
-
-//     res.json(suggestions);
-//   } catch (err) {
-//     console.error("❌ Suggestion Error:", err);
-//     res.status(500).json({ message: "Failed to fetch suggestions" });
-//   }
-// };
-
-
-// const getSuggestions = async (req, res) => {
-//   try {
-//     const favIds = req.query.favIds?.split(",").filter(Boolean) || [];
-//     console.log("🧩 Received favIds:", favIds);
-
-//     const validFavIds = favIds.filter((id) => mongoose.Types.ObjectId.isValid(id));
-//     console.log("✅ Valid favIds:", validFavIds);
-
-//     if (!validFavIds.length) {
-//       console.log("⚠️ No valid favorites found — returning random recipes");
-//       const randomRecipes = await Recipes.aggregate([{ $sample: { size: 5 } }]);
-//       return res.json(randomRecipes);
-//     }
-
-//     const favRecipes = await Recipes.find({ _id: { $in: validFavIds } });
-//     console.log("💾 Found favorite recipes:", favRecipes.length);
-
-//     const allIngredients = favRecipes.flatMap(r => r.ingredients || []);
-//     const allDiets = favRecipes.map(r => r.dietaryPreference).filter(Boolean);
-//     console.log("🧂 Ingredients collected:", allIngredients);
-
-//     const suggestions = await Recipes.find({
-//       _id: { $nin: validFavIds },
-//       $or: [
-//         { ingredients: { $in: allIngredients } },
-//         { dietaryPreference: { $in: allDiets } },
-//       ],
-//     }).limit(8);
-
-//     console.log("✨ Suggestions found:", suggestions.length);
-//     return res.json(suggestions);
-//   } catch (err) {
-//     console.error("❌ Suggestion Error:", err);
-//     res.status(500).json({ message: "Failed to fetch recipe suggestions" });
-//   }
-// };
 
 
  
 const getSuggestions = async (req, res) => {
   try {
     const favIds = req.query.favIds?.split(",").filter(Boolean) || [];
-    console.log("🧩 Received favIds:", favIds);
+    console.log(" Received favIds:", favIds);
 
     const validFavIds = favIds.filter(id => mongoose.Types.ObjectId.isValid(id));
-    console.log("✅ Valid favIds:", validFavIds);
+    console.log(" Valid favIds:", validFavIds);
 
     if (!validFavIds.length) {
-      console.log("⚠️ No valid favorites found — returning random recipes");
+      console.log(" No valid favorites found — returning random recipes");
       const randomRecipes = await Recipes.aggregate([{ $sample: { size: 5 } }]);
-      return res.json(randomRecipes); // ✅ return to stop further execution
+      return res.json(randomRecipes); //  return to stop further execution
     }
 
     const favRecipes = await Recipes.find({ _id: { $in: validFavIds } });
-    console.log("💾 Found favorite recipes:", favRecipes.length);
+    console.log(" Found favorite recipes:", favRecipes.length);
 
     const allIngredients = favRecipes.flatMap(r => r.ingredients || []);
     const allDiets = favRecipes.map(r => r.dietaryPreference).filter(Boolean);
-    console.log("🧂 Ingredients collected:", allIngredients);
+    console.log(" Ingredients collected:", allIngredients);
 
     const suggestions = await Recipes.find({
       _id: { $nin: validFavIds },
@@ -223,16 +140,16 @@ const getSuggestions = async (req, res) => {
     }).limit(8);
 
     console.log("✨ Suggestions found:", suggestions.length);
-    return res.json(suggestions); // ✅ return here too
+    return res.json(suggestions); //  return here too
   } catch (err) {
-    console.error("❌ Suggestion Error:", err);
-    return res.status(500).json({ message: "Failed to fetch recipe suggestions" }); // ✅ return
+    console.error(" Suggestion Error:", err);
+    return res.status(500).json({ message: "Failed to fetch recipe suggestions" }); //  return
   }
 };
 
 
 
-// ⭐ Rate a recipe
+//  Rate a recipe
 const rateRecipe = async (req, res) => {
   try {
     const { recipeId, rating } = req.body;
@@ -261,7 +178,7 @@ const rateRecipe = async (req, res) => {
 
     return res.json({ message: "Rating updated", averageRating: recipe.averageRating });
   } catch (err) {
-    console.error("❌ Rating Error:", err);
+    console.error(" Rating Error:", err);
     return res.status(500).json({ message: "Failed to rate recipe" });
   }
 };
